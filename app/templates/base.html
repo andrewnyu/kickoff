@@ -4,11 +4,13 @@
     <title>{{ title }} Football-Rank </title>
     {% else %}
     <title>Welcome to Football Rank</title>
+    {% endif %}
     </head>
 
     <div>
         <a href="{{ url_for('index') }}}">Home</a>
         <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
     </div>
 
     <hr>
@@ -21,5 +23,7 @@
     </ul>
     {% endif %}
     {% endwith %}
+
+
     {% block content %}{% endblock %}
 </html>

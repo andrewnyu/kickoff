@@ -19,6 +19,20 @@
             {% endfor %}
         </p>
         <p>
+            {{ form.team.label }}<br>
+            {{ form.team(size=32) }}<br>
+            {% for error in form.team.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.player.label }}<br>
+            {{ form.player(size=32) }}<br>
+            {% for error in form.player.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
             {% for error in form.password.errors %}

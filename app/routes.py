@@ -3,11 +3,12 @@ from flask import render_template, flash, redirect, url_for
 from app.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, logout_user
 from app.models import User
+from app import db
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return "Hello World"
+    return render_template('index.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -18,7 +19,7 @@ def login():
             return('Invalid username or password')
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for('index'))
-    return render_template(url_for('login'),title='Sign In', form=form)
+    return render_template('login.html',title='Sign In', form=form)
 
 @app.route('/logout')
 def logout():
@@ -31,7 +32,8 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(username=form.username.data, email=form.email.data,
+                player=form.player.data, team=form.team.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
