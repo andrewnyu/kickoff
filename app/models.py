@@ -22,3 +22,10 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+class Player(db.Model):
+    sofifa_id = db.Column(db.Integer, primary_key=True)
+    club = db.Column(db.String(64), index=True)
+    country = db.Column(db.String(64), index=True)
+    short_name = db.Column(db.String(128), index=True, unique=True)
+    long_name = db.Column(db.String(128), index=True, unique=True)

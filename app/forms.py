@@ -9,6 +9,16 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+class KickoffForm(FlaskForm):
+    choose_player1 = BooleanField(str('Player 1'))
+    choose_player2 = BooleanField(str('Player 2'))
+    submit = SubmitField('Choose!')
+
+    def validate_selection(self, choose_player1, choose_player2):
+        if choose_player1 == choose_player2:
+            raise ValidationError("Please choose a player")
+
+
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     team = StringField('Favorite Football Team')

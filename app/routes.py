@@ -1,14 +1,36 @@
 from app import app
 from flask import render_template, flash, redirect, url_for
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, KickoffForm
 from flask_login import current_user, login_user, logout_user
-from app.models import User
+from app.models import User, Player
 from app import db
+from config import Config
+import random
 
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+@app.route('/kickoff', methods=['GET','POST'])
+def kickoff():
+    #generate players to compare using random numbers
+    player1 = app.config['NUM_PLAYERS']*random.random()
+    random.seed(5)
+    player2 = app.config['NUM_PLAYERS']*random.random()
+    while(player2 == player1):
+        player2 = app.config['NUM_PLAYERS']*random.random()
+    
+    player1 = Player.query.get(int(player1))
+    player2 = Player.query.get(int(player2))
+    form = KickoffForm()
+
+    if form.validate_on_submit():
+        return redirect(url_for('kickoff'))
+
+    
+    return render_template('kickoff.html', form=form, player1=player1, player2=player2)
+
 
 @app.route('/login', methods=['GET','POST'])
 def login():
