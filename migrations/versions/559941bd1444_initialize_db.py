@@ -1,8 +1,8 @@
-"""Force upgrade db
+"""Initialize db
 
-Revision ID: d5800fd309c8
+Revision ID: 559941bd1444
 Revises: 
-Create Date: 2020-04-13 23:41:46.237619
+Create Date: 2020-04-14 20:11:33.494301
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd5800fd309c8'
+revision = '559941bd1444'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,11 +33,13 @@ def upgrade():
     op.create_index(op.f('ix_player_short_name'), 'player', ['short_name'], unique=True)
     op.create_index(op.f('ix_player_sofifa_id'), 'player', ['sofifa_id'], unique=False)
     op.create_table('result',
-    sa.Column('player1_id', sa.Integer(), nullable=False),
+    sa.Column('result_no', sa.Integer(), nullable=False),
+    sa.Column('player1_id', sa.Integer(), nullable=True),
     sa.Column('player2_id', sa.Integer(), nullable=True),
     sa.Column('selection', sa.Integer(), nullable=True),
-    sa.PrimaryKeyConstraint('player1_id')
+    sa.PrimaryKeyConstraint('result_no')
     )
+    op.create_index(op.f('ix_result_player1_id'), 'result', ['player1_id'], unique=False)
     op.create_index(op.f('ix_result_player2_id'), 'result', ['player2_id'], unique=False)
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -59,6 +61,7 @@ def downgrade():
     op.drop_index(op.f('ix_user_email'), table_name='user')
     op.drop_table('user')
     op.drop_index(op.f('ix_result_player2_id'), table_name='result')
+    op.drop_index(op.f('ix_result_player1_id'), table_name='result')
     op.drop_table('result')
     op.drop_index(op.f('ix_player_sofifa_id'), table_name='player')
     op.drop_index(op.f('ix_player_short_name'), table_name='player')
