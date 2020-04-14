@@ -39,7 +39,6 @@ def kickoff():
         db.session.add(result)
         db.session.commit()
         return redirect(url_for('kickoff'))
-
     return render_template('kickoff.html', form=form, player1=player1, player2=player2)
 
 

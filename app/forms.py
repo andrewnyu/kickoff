@@ -14,15 +14,6 @@ class KickoffForm(FlaskForm):
     choose_player2 = BooleanField(str('Player 2'))
     submit = SubmitField('Choose!')
 
-    def validate_selection(self, choose_player1, choose_player2):
-        if choose_player1.data and choose_player2.data:
-            print("error")
-            raise ValidationError("Please choose only one player")
-        elif not choose_player1.data and not choose_player2.data:
-            print("error")
-            raise ValidationError("Please choose a player")
-
-
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     team = StringField('Favorite Football Team')
