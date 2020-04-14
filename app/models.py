@@ -2,6 +2,7 @@ from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app import login
+from datetime import datetime
 
 @login.user_loader
 def load_user(id):
@@ -39,4 +40,9 @@ class Result(db.Model):
     player1_id = db.Column(db.Integer, index=True)
     player2_id = db.Column(db.Integer,index=True)
     selection = db.Column(db.Integer)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id=db.Column(db.Integer,db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<{} vs. {}, result:{}>'.format(self.player1_id,self.player2_id,self.selection)
 

@@ -15,13 +15,14 @@ def index():
 @app.route('/kickoff', methods=['GET','POST'])
 def kickoff():
     #generate players to compare using random numbers
-    random.seed(10)
-    player1 = random.randint(0,app.config['NUM_PLAYERS']-1)
-    random.seed(5)
-    player2 = random.randint(0,app.config['NUM_PLAYERS']-1)
-    while(player2 == player1):
-        player2 = random.randint(0,app.config['NUM_PLAYERS']-1)
-    
+    def get_players(player1=None,player2=None):
+        player1 = random.randint(0,app.config['NUM_PLAYERS']-1) if player1 is None else player1
+        player2 = random.randint(0,app.config['NUM_PLAYERS']-1) if player2 is None else player2
+        while(player2 == player1):
+            player2 = random.randint(0,app.config['NUM_PLAYERS']-1)
+        return player1,player2
+
+    player1,player2 = get_players()
     player1 = Player.query.get(int(player1))
     player2 = Player.query.get(int(player2))
     form = KickoffForm()

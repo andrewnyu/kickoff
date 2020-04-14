@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,RadioField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 from app.models import User
 
@@ -15,8 +15,12 @@ class KickoffForm(FlaskForm):
     submit = SubmitField('Choose!')
 
     def validate_selection(self, choose_player1, choose_player2):
-        if choose_player1 == choose_player2:
-            raise ValidationError("Please choose one player")
+        if choose_player1.data and choose_player2.data:
+            print("error")
+            raise ValidationError("Please choose only one player")
+        elif not choose_player1.data and not choose_player2.data:
+            print("error")
+            raise ValidationError("Please choose a player")
 
 
 class RegistrationForm(FlaskForm):
