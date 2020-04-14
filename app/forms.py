@@ -16,7 +16,7 @@ class KickoffForm(FlaskForm):
 
     def validate_selection(self, choose_player1, choose_player2):
         if choose_player1 == choose_player2:
-            raise ValidationError("Please choose a player")
+            raise ValidationError("Please choose one player")
 
 
 class RegistrationForm(FlaskForm):

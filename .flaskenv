@@ -1,1 +1,1 @@
-FLASK_APP=football-rank.py
+FLASK_APP=kickoff.py

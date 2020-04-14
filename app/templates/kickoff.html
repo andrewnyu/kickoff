@@ -4,14 +4,14 @@
 <form action="" method="post">
     {{ form.hidden_tag() }}
     <p>
-        {{ form.choose_player1.label }}<br>
+        {{ player1.short_name }}<br>
         {{ form.choose_player1(size=32) }}<br>
         {% for error in form.choose_player1.errors %}
         <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
     </p>
     <p>
-        {{ form.choose_player2.label }}<br>
+        {{ player2.short_name }}<br>
         {{ form.choose_player2(size=32) }}<br>
         {% for error in form.choose_player2.errors %}
         <span style="color: red;">[{{ error }}]</span>
