@@ -10,8 +10,8 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class KickoffForm(FlaskForm):
-    choose_player1 = BooleanField(str('Player 1'))
-    choose_player2 = BooleanField(str('Player 2'))
+    choose_player1 = BooleanField('')
+    choose_player2 = BooleanField('')
     submit = SubmitField('Choose!')
 
 class RegistrationForm(FlaskForm):

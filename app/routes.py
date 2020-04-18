@@ -6,6 +6,7 @@ from app.models import User, Player, Result
 from app import db
 from config import Config
 import random
+import os
 
 @app.route('/')
 @app.route('/index')
