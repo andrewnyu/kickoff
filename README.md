@@ -5,4 +5,4 @@ Short summary, I decided to learn web application programming using the highly r
 <br>
 Screenshot:
 <br>
-<img src: "static/img/kickoff.png">
+<img src: "https://github.com/andrewnyu/kickoff/blob/master/static/img/kickoff.png" />
