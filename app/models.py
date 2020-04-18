@@ -25,12 +25,22 @@ class User(UserMixin, db.Model):
         return '<User {}>'.format(self.username)
 
 class Player(db.Model):
+    #primary attributes
     player_id = db.Column(db.Integer, primary_key=True)
     sofifa_id = db.Column(db.Integer, index=True)
     club = db.Column(db.String(64), index=True)
     country = db.Column(db.String(64), index=True)
     short_name = db.Column(db.String(128), index=True, unique=True)
     long_name = db.Column(db.String(128), index=True, unique=True)
+
+    #secondary attributes
+    height = db.Column(db.Integer, index=True)
+    weight = db.Column(db.Integer, index=True)
+    overall = db.Column(db.Integer, index=True)
+    potential = db.Column(db.Integer, index=True)
+    value = db.Column(db.Integer, index=True)
+    wage = db.Column(db.Integer, index=True)
+    player_position = db.Column(db.String(128))
 
     def __repr__(self):
         return '<Player ID: {}, Name: {}>'.format(self.player_id, self.short_name)
