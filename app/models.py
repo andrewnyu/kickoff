@@ -41,6 +41,7 @@ class Player(db.Model):
     value = db.Column(db.Integer, index=True)
     wage = db.Column(db.Integer, index=True)
     player_position = db.Column(db.String(128))
+    preferred_foot = db.Column(db.String(128))
 
     def __repr__(self):
         return '<Player ID: {}, Name: {}>'.format(self.player_id, self.short_name)
