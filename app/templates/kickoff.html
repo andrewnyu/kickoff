@@ -3,19 +3,31 @@
 {% block app_content %}
 <form action="" method="post">
     {{ form.hidden_tag() }}
-    <p>
-        {{ player1.short_name }}<br>
-        {{ form.choose_player1(size=32) }}<br>
-        {% for error in form.choose_player1.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ player2.short_name }}<br>
-        {{ form.choose_player2(size=32) }}<br>
-        {% for error in form.choose_player2.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>{{ form.submit() }}</p>
+    <div class="row">
+        <div class="col-md-6">
+        <p>
+            {{ player1.short_name }}<br>
+            {{ form.choose_player1(size=32) }}<br>
+            {% for error in form.choose_player1.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        </div>
+
+        <div class="col-md-6">
+        <p>
+            {{ player2.short_name }}<br>
+            {{ form.choose_player2(size=32) }}<br>
+            {% for error in form.choose_player2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.submit() }}</div>
+        <div class="col-md-4"></div>
+      </div>
 {% endblock %}
