@@ -1,8 +1,8 @@
-"""Initial migration
+"""new db for prod test
 
-Revision ID: 37be31cb1a37
+Revision ID: 99cc6be73a06
 Revises: 
-Create Date: 2020-04-14 20:49:46.370551
+Create Date: 2020-04-25 13:42:05.653763
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '37be31cb1a37'
+revision = '99cc6be73a06'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,13 +25,27 @@ def upgrade():
     sa.Column('country', sa.String(length=64), nullable=True),
     sa.Column('short_name', sa.String(length=128), nullable=True),
     sa.Column('long_name', sa.String(length=128), nullable=True),
+    sa.Column('height', sa.Integer(), nullable=True),
+    sa.Column('weight', sa.Integer(), nullable=True),
+    sa.Column('overall', sa.Integer(), nullable=True),
+    sa.Column('potential', sa.Integer(), nullable=True),
+    sa.Column('value', sa.Integer(), nullable=True),
+    sa.Column('wage', sa.Integer(), nullable=True),
+    sa.Column('player_position', sa.String(length=128), nullable=True),
+    sa.Column('preferred_foot', sa.String(length=128), nullable=True),
     sa.PrimaryKeyConstraint('player_id')
     )
     op.create_index(op.f('ix_player_club'), 'player', ['club'], unique=False)
     op.create_index(op.f('ix_player_country'), 'player', ['country'], unique=False)
+    op.create_index(op.f('ix_player_height'), 'player', ['height'], unique=False)
     op.create_index(op.f('ix_player_long_name'), 'player', ['long_name'], unique=True)
+    op.create_index(op.f('ix_player_overall'), 'player', ['overall'], unique=False)
+    op.create_index(op.f('ix_player_potential'), 'player', ['potential'], unique=False)
     op.create_index(op.f('ix_player_short_name'), 'player', ['short_name'], unique=True)
     op.create_index(op.f('ix_player_sofifa_id'), 'player', ['sofifa_id'], unique=False)
+    op.create_index(op.f('ix_player_value'), 'player', ['value'], unique=False)
+    op.create_index(op.f('ix_player_wage'), 'player', ['wage'], unique=False)
+    op.create_index(op.f('ix_player_weight'), 'player', ['weight'], unique=False)
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=64), nullable=True),
@@ -68,9 +82,15 @@ def downgrade():
     op.drop_index(op.f('ix_user_username'), table_name='user')
     op.drop_index(op.f('ix_user_email'), table_name='user')
     op.drop_table('user')
+    op.drop_index(op.f('ix_player_weight'), table_name='player')
+    op.drop_index(op.f('ix_player_wage'), table_name='player')
+    op.drop_index(op.f('ix_player_value'), table_name='player')
     op.drop_index(op.f('ix_player_sofifa_id'), table_name='player')
     op.drop_index(op.f('ix_player_short_name'), table_name='player')
+    op.drop_index(op.f('ix_player_potential'), table_name='player')
+    op.drop_index(op.f('ix_player_overall'), table_name='player')
     op.drop_index(op.f('ix_player_long_name'), table_name='player')
+    op.drop_index(op.f('ix_player_height'), table_name='player')
     op.drop_index(op.f('ix_player_country'), table_name='player')
     op.drop_index(op.f('ix_player_club'), table_name='player')
     op.drop_table('player')

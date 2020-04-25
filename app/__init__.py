@@ -12,4 +12,7 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 bootstrap = Bootstrap(app)
 
+
 from app import routes, models
+from .init_db import import_players
+import_players(db)
