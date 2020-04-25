@@ -19,6 +19,6 @@ def import_players(db):
             db.session.add(player)
             db.session.commit()
         except:
-            print(f"player {player.short_name} already in db")
+            pass
 
 
