@@ -19,6 +19,8 @@ def import_players(db):
             db.session.add(player)
             db.session.commit()
         except:
+            print("player profile already loaded")
+            db.session.rollback()
             pass
 
 
