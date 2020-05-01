@@ -7,3 +7,7 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     NUM_PLAYERS = 100
+    MAIL_USERNAME = ''
+    MAIL_SERVER = ''
+    MAIL_PASSWORD = ''
+    ADMINS = ''

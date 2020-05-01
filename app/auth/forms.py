@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField,RadioField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -8,11 +8,6 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
-
-class KickoffForm(FlaskForm):
-    choose_player1 = BooleanField('')
-    choose_player2 = BooleanField('')
-    submit = SubmitField('Choose!')
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])

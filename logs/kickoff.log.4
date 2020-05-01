@@ -1,0 +1,114 @@
+2020-05-01 18:12:03,507 ERROR: Exception on / [GET] [in c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\Andrew Yu\Documents\Prog\Projects\kickoff\app\main\routes.py", line 14, in index
+    return render_template('main/index.html')
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\Andrew Yu\Documents\Prog\Projects\kickoff\app\templates\main\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\Andrew Yu\Documents\Prog\Projects\kickoff\app\templates\base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 3, in block "doc"
+    <html{% block html_attribs %}{% endblock html_attribs %}>
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 11, in block "html"
+    {%- endblock metas %}
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 12, in block "body"
+  File "C:\Users\Andrew Yu\Documents\Prog\Projects\kickoff\app\templates\base.html", line 18, in block "navbar"
+    <a class="navbar-brand" href="{{ url_for('index') }}">Kick Off!</a>
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\werkzeug\routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'index'. Did you mean 'main.index' instead?
+2020-05-01 18:13:28,184 INFO: Kickoff startup [in C:\Users\Andrew Yu\Documents\Prog\Projects\kickoff\app\__init__.py:60]
+2020-05-01 18:13:31,799 ERROR: Exception on / [GET] [in c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\Andrew Yu\Documents\Prog\Projects\kickoff\app\main\routes.py", line 14, in index
+    return render_template('main.index.html')
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\loaders.py", line 117, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: main.index.html
+2020-05-01 18:13:32,605 ERROR: Exception on / [GET] [in c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\Andrew Yu\Documents\Prog\Projects\kickoff\app\main\routes.py", line 14, in index
+    return render_template('main.index.html')
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\jinja2\loaders.py", line 117, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "c:\users\andrew~1\envs\flask-kickoff\lib\site-packages\flask\templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: main.index.html
+2020-05-01 18:14:43,024 INFO: Kickoff startup [in C:\Users\Andrew Yu\Documents\Prog\Projects\kickoff\app\__init__.py:60]
