@@ -29,6 +29,7 @@ def kickoff():
 
     img1 = url_for('static',filename='img/'+str(player1.sofifa_id)+'.png')
     img2 = url_for('static',filename='img/'+str(player2.sofifa_id)+'.png')
+    print(img1)
     form = KickoffForm()
 
     if form.validate_on_submit():
@@ -42,6 +43,6 @@ def kickoff():
                 selection=selection)
         db.session.add(result)
         db.session.commit()
-        return redirect(url_for('kickoff'))
+        return redirect(url_for('main.kickoff'))
     return render_template('main/kickoff.html', form=form, player1=player1, player2=player2, 
             img1 = img1, img2=img2)
