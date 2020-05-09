@@ -43,11 +43,11 @@ def kickoff():
     form = KickoffForm()
 
     if form.validate_on_submit():
-        selection = 0
-        if form.choose_player1.data:
+        selection = None
+        if form.choose_player1.data and not form.choose_player2.data:
             selection = player1.player_id
             elo_ranking(player1, player2)
-        else:
+        elif form.choose_player2.data and not form.choose_player1.data:
             selection = player2.player_id
             elo_ranking(player2, player1)
         
