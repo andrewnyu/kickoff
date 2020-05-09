@@ -2,6 +2,7 @@ from flask import Flask
 import os
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import IntegrityError
 from app.models import Player
 import csv
 
@@ -33,9 +34,10 @@ with open('app/static/data/players_20.csv',encoding="utf8") as csvfile:
         try:
             db.session.add(player)
             db.session.commit()
-        except:
+        except IntegrityError:
+            db.session.rollback()
             print("Player already loaded")
-            pass
+            
         
         if index>100:
             break
