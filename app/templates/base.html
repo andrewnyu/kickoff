@@ -15,7 +15,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('main.index') }}">Kick Off!</a>
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                    <div class="container">
+                    <img src="static/index/kickoff-logo.png" style="height:10%;width: 10%; position:left;">
+                    </div>
+                </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -48,3 +52,4 @@
         {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
+
