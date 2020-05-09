@@ -1,8 +1,8 @@
-"""Initial migration
+"""Add elo rating system
 
-Revision ID: 9458826e04bf
+Revision ID: 2f7a4bf2d1e0
 Revises: 
-Create Date: 2020-05-01 18:18:38.161538
+Create Date: 2020-05-09 17:00:16.799065
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '9458826e04bf'
+revision = '2f7a4bf2d1e0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,10 +33,14 @@ def upgrade():
     sa.Column('wage', sa.Integer(), nullable=True),
     sa.Column('player_position', sa.String(length=128), nullable=True),
     sa.Column('preferred_foot', sa.String(length=128), nullable=True),
+    sa.Column('elo_ranking', sa.Integer(), nullable=True),
+    sa.Column('cumulative_score', sa.Integer(), nullable=True),
+    sa.Column('num_selections', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('player_id')
     )
     op.create_index(op.f('ix_player_club'), 'player', ['club'], unique=False)
     op.create_index(op.f('ix_player_country'), 'player', ['country'], unique=False)
+    op.create_index(op.f('ix_player_elo_ranking'), 'player', ['elo_ranking'], unique=False)
     op.create_index(op.f('ix_player_height'), 'player', ['height'], unique=False)
     op.create_index(op.f('ix_player_long_name'), 'player', ['long_name'], unique=True)
     op.create_index(op.f('ix_player_overall'), 'player', ['overall'], unique=False)
@@ -91,6 +95,7 @@ def downgrade():
     op.drop_index(op.f('ix_player_overall'), table_name='player')
     op.drop_index(op.f('ix_player_long_name'), table_name='player')
     op.drop_index(op.f('ix_player_height'), table_name='player')
+    op.drop_index(op.f('ix_player_elo_ranking'), table_name='player')
     op.drop_index(op.f('ix_player_country'), table_name='player')
     op.drop_index(op.f('ix_player_club'), table_name='player')
     op.drop_table('player')

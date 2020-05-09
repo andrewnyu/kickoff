@@ -43,6 +43,11 @@ class Player(db.Model):
     player_position = db.Column(db.String(128))
     preferred_foot = db.Column(db.String(128))
 
+    #dynamic attributes
+    elo_ranking = db.Column(db.Integer, index=True)
+    cumulative_score = db.Column(db.Integer)
+    num_selections = db.Column(db.Integer)
+
     def __repr__(self):
         return '<Player ID: {}, Name: {}>'.format(self.player_id, self.short_name)
 
