@@ -14,9 +14,10 @@ def index():
     return render_template('index.html')
 
 def elo_ranking(a,b):
+    print(a.short_name)
     a.cumulative_score += b.cumulative_score+400
     a.num_selections+=1
-    b.cumulative_score += b.cumulative_score-400
+    b.cumulative_score += a.cumulative_score-400
     b.num_selections+=1
     a.elo_ranking = int(a.cumulative_score/a.num_selections)
     b.elo_ranking = int(b.cumulative_score/b.num_selections)
@@ -37,6 +38,8 @@ def kickoff():
     player1,player2 = get_players()
     player1 = Player.query.get(int(player1))
     player2 = Player.query.get(int(player2))
+    print(player1.short_name)
+    print(player2.short_name)
 
     img1 = url_for('static',filename='img/'+str(player1.sofifa_id)+'.png')
     img2 = url_for('static',filename='img/'+str(player2.sofifa_id)+'.png')
@@ -56,5 +59,6 @@ def kickoff():
         db.session.add(result)
         db.session.commit()
         return redirect(url_for('main.kickoff'))
+        
     return render_template('main/kickoff.html', form=form, player1=player1, player2=player2, 
             img1 = img1, img2=img2)

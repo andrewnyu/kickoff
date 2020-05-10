@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block app_content %}
+
+<table align="center">
+    <tr valign="top">
+        <td style="text-align:center; width:128px">Rank<br></td> 
+        <td style="text-align:center; width:128px"><br></td>
+        <td style="text-align:center; width:128px">Player<br></td>
+        <td style="text-align:center; width:128px">Elo Ranking<br></td>
+    </tr>
+
+{% set index = namespace(value=1) %}
+{% for player in top_players %}
+    <tr valign="top">
+        <td style="text-align:center; vertical-align: middle; width:128px">{{ index.value }}</td> 
+        <td><img src="{{ url_for('static',filename='img/'+player.sofifa_id|string +'.png')}}" 
+            onerror="this.src='static/img/0.png'" width="128" height="128"></td>
+        <td style="text-align:center; vertical-align: middle; width:128px">{{ player.short_name }}</td>
+        <td style="text-align:center; vertical-align: middle; width:128px">{{ player.elo_ranking }}</td>
+    </tr>
+    {% set index.value = index.value + 1 %}
+{% endfor%}
+</table>
+
+
+{% endblock%}
