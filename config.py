@@ -8,7 +8,7 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    NUM_PLAYERS = 100
+    NUM_PLAYERS = 80
     MAIL_USERNAME = ''
     MAIL_SERVER = ''
     MAIL_PASSWORD = ''
