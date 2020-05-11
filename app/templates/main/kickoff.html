@@ -2,33 +2,29 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block app_content %}
-<form action="" method="post">
-    {{ form.hidden_tag() }}
-    <div class="row">
-        <div class="col-md-6">
-        <p>
-        <img src="{{ img1 }}" onerror="this.src='static/img/0.png'" width="256" height="256"><br>
-            Name: {{ player1.short_name }}<br>
-            Club: {{ player1.club }}<br>
-            Country: {{ player1.country }}<br>
-            {{ wtf.form_field(form.choose_player1) }}
-        </p>
-        </div>
-
-        <div class="col-md-6">
-        <p>
-            <img src="{{ img2 }}" onerror="this.src='static/img/0.png'" width="256" height="256"><br>
-            Name: {{ player2.short_name }}<br>
-            Club: {{ player2.club }}<br>
-            Country: {{ player2.country }}<br>
-            {{ wtf.form_field(form.choose_player2) }}
-        </p>
-        </div>
+<div class="row">
+    <div class="col-md-6">
+    <p>
+        <a href="{{ url_for('main.choose_player', player1=player1.player_id,player2=player2.player_id) }}">
+        <img src="{{ img1 }}" onerror="this.src='static/img/0.png'" width="256" height="256">
+        </a>
+        <br>
+        Name: {{ player1.short_name }}<br>
+        Club: {{ player1.club }}<br>
+        Country: {{ player1.country }}<br>
+    </p>
     </div>
 
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">{{ wtf.form_field(form.submit, button_map={'submit': 'primary'}) }}</div>
-        <div class="col-md-4"></div>
-      </div>
+    <div class="col-md-6">
+    <p>
+        <a href="{{ url_for('main.choose_player', player1=player2.player_id,player2=player1.player_id)}}">
+        <img src="{{ img2 }}" onerror="this.src='static/img/0.png'" width="256" height="256">
+        </a>
+        <br>
+        Name: {{ player2.short_name }}<br>
+        Club: {{ player2.club }}<br>
+        Country: {{ player2.country }}<br>
+    </p>
+    </div>
+</div>
 {% endblock %}

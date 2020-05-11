@@ -23,6 +23,19 @@ def elo_ranking(a,b):
     b.elo_ranking = int(b.cumulative_score/b.num_selections)
     db.session.commit()
 
+@bp.route('/choose/<player1>/<player2>')
+def choose_player(player1, player2):
+    player1 = Player.query.get(int(player1))
+    player2 = Player.query.get(int(player2))
+
+    selection = player1.player_id
+    elo_ranking(player1, player2)
+
+    result = Result(player1_id=player1.player_id, player2_id=player2.player_id, 
+            selection=player1.player_id)
+    db.session.add(result)
+    db.session.commit()
+    return redirect(url_for('main.kickoff'))
 
 
 @bp.route('/kickoff', methods=['GET','POST'])
@@ -38,27 +51,10 @@ def kickoff():
     player1,player2 = get_players()
     player1 = Player.query.get(int(player1))
     player2 = Player.query.get(int(player2))
-    print(player1.short_name)
-    print(player2.short_name)
+    print(player1.short_name, player2.short_name)
 
     img1 = url_for('static',filename='img/'+str(player1.sofifa_id)+'.png')
     img2 = url_for('static',filename='img/'+str(player2.sofifa_id)+'.png')
-    form = KickoffForm()
-
-    if form.validate_on_submit():
-        selection = None
-        if form.choose_player1.data and not form.choose_player2.data:
-            selection = player1.player_id
-            elo_ranking(player1, player2)
-        elif form.choose_player2.data and not form.choose_player1.data:
-            selection = player2.player_id
-            elo_ranking(player2, player1)
         
-        result = Result(player1_id=player1.player_id, player2_id=player2.player_id, 
-                selection=selection)
-        db.session.add(result)
-        db.session.commit()
-        return redirect(url_for('main.kickoff'))
-        
-    return render_template('main/kickoff.html', form=form, player1=player1, player2=player2, 
+    return render_template('main/kickoff.html', player1=player1, player2=player2, 
             img1 = img1, img2=img2)
