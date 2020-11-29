@@ -14,13 +14,14 @@ def index():
     return render_template('index.html')
 
 def elo_ranking(a,b):
+    '''
+    Update the database given latest selection result, where player a was chosen over player b
+    '''
     print(a.short_name)
-    a.cumulative_score += b.cumulative_score+400
     a.num_selections+=1
-    b.cumulative_score += a.cumulative_score-400
     b.num_selections+=1
-    a.elo_ranking = int(a.cumulative_score/a.num_selections)
-    b.elo_ranking = int(b.cumulative_score/b.num_selections)
+    a.elo_ranking = int(((a.num_selections-1)*a.elo_ranking+(b.elo_ranking+400))/a.num_selections)
+    b.elo_ranking = int(((b.num_selections-1)*b.elo_ranking+(a.elo_ranking-400))/b.num_selections)
     db.session.commit()
 
 @bp.route('/choose/<player1>/<player2>')
